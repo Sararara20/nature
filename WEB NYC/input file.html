@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="./input file.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="topnav" id="myTopnav">
+  <a href="./home.html">About us</a>
+  <a href="./sales.html">Sales</a>
+  <a href="./produk.html">Products</a>
+  <a href="sugesstion.html" >Suggestion</a>
+  <a href="./index.html">Login</a>
+  <input type="file" id="fileInput" accept=".json" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Content -->
+<div class="content">
+  <h2 class="data-title">Dashboard</h2>
+  <div id="dashboardContent">
+    <!-- Dashboard content will be displayed here -->
+  </div>
+</div>
+
+<script>
+// Function to handle file select event
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const jsonData = JSON.parse(event.target.result);
+      updateDashboard(jsonData);
+    }
+    reader.readAsText(file);
+  }
+}
+
+// Function to update dashboard content
+function updateDashboard(data) {
+  const dashboardContent = document.getElementById('dashboardContent');
+  dashboardContent.innerHTML = ''; // Clear existing content
+  // Add new content based on JSON data
+  for (const item of data) {
+    const div = document.createElement('div');
+    div.textContent = `Name: ${item.name}, Value: ${item.value}`;
+    dashboardContent.appendChild(div);
+  }
+}
+</script>
+
+</body>
+</html>
