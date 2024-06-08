@@ -2,14 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/node"
+      "src": WEB NYC/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/produk", "dest": "/produk.html" },
+    { "src": "/sales", "dest": "/sales.html" },
+    { "src": "/suggestion", "dest": "/suggestion.html" },
+    { "src": "/team10", "dest": "/team10.html" }
   ]
 }
